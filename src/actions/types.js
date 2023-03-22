@@ -1,0 +1,2 @@
+export const ADD_TRACK = 'ADD_TRACK';
+export const SET_CURRENT_TRACK = 'SET_CURRENT_TRACK';
