@@ -1,8 +1,6 @@
 import React, { createContext } from 'react';
 
-export const initialState = {
-    result: null
-};
+export const initialState: {[key: string]: any} = {};
 
 export type ResultStore = typeof initialState;
 

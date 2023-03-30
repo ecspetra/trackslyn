@@ -1,8 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { createContext, useReducer } from 'react';
 import { initialState, Store, tracksReducer } from "../../../reducers/TracksReducer";
-import { Action, addTrack } from "../../../actions/actions";
-import useAccessToken from '../../../hooks/useAccessToken';
+import { Action, addTrack } from "../../../actions";
 
 type TracksContext = {
 	state: Store;
@@ -12,16 +11,16 @@ type TracksContext = {
 export const TracksContext = createContext<TracksContext>({} as TracksContext);
 
 type TracksContextProviderProps = {
-	linkToFetch: string,
-	children: JSX.Element[],
+	token: string;
+	linkToFetch: string;
+	children: JSX.Element[];
 }
 
-export const TracksContextProvider: FC<TracksContextProviderProps> = ({ linkToFetch, children }) => {
+export const TracksContextProvider: FC<TracksContextProviderProps> = ({ token, linkToFetch, children }) => {
 	const [isResultLoaded, setIsResultLoaded] = useState(false);
 	const [currentResult, setCurrentResult] = useState<string>(linkToFetch);
 	const [nextResult, setNextResult] = useState<string>(null);
 	const [fetchError, setFetchError] = useState(false);
-	const [token] = useAccessToken();
 
 	const [state, dispatch] = useReducer<React.Reducer<Store, Action>>(
 		tracksReducer,
@@ -33,6 +32,7 @@ export const TracksContextProvider: FC<TracksContextProviderProps> = ({ linkToFe
 	}
 
 	useEffect(() => {
+		setIsResultLoaded(false);
 		const handleFetchSource = async () => {
 			await fetch(currentResult, {
 				headers: {
@@ -41,7 +41,6 @@ export const TracksContextProvider: FC<TracksContextProviderProps> = ({ linkToFe
 			}).then((data) => data.json())
 				.then(async (data) => {
 					data.items.map((item) => dispatch(addTrack(item.track)));
-					console.log(data);
 					setNextResult(data.next);
 				}).catch((error) => setFetchError(error));
 
@@ -58,14 +57,15 @@ export const TracksContextProvider: FC<TracksContextProviderProps> = ({ linkToFe
 		}
 	}, [state]);
 
-	if (!state.tracks.length) {
-		return;
-	} else if (fetchError) {
+	if (fetchError) {
 		return <div>Error</div>;
-	} else if (isResultLoaded === false) return <div>Loading...</div>;
+	} else if (!token) return;
 
 	const childrenWithProps = React.Children.map(children, (child) => (
-		React.cloneElement(child, {handleSetNextResult: handleSetNextResult})
+		React.cloneElement(child, {
+			handleSetNextResult: handleSetNextResult,
+			isResultLoaded: isResultLoaded
+		})
 	));
 
 	return (

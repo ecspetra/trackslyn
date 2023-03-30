@@ -1,4 +1,4 @@
-import type { Action } from '../actions/actions';
+import type { Action } from '../actions';
 
 export const initialState = {
 	currentTrack: null,
@@ -23,6 +23,11 @@ export const tracksReducer = (state: Store, action: Action) => {
 			return {
 				...state,
 				currentTrack: action.payload,
+			}
+		case 'CLEAR_TRACKS':
+			return {
+				currentTrack: null,
+				tracks: [],
 			}
 		default:
 			return state;
