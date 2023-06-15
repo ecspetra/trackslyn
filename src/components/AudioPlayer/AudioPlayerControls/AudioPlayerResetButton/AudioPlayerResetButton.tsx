@@ -1,4 +1,6 @@
 import React, { FC } from "react";
+import Reset from "../../../../images/icons/Reset";
+import Button from "../../../Button/Button";
 
 type AudioPlayerResetButtonProps = {
     handleResetTrack: () => void;
@@ -6,7 +8,7 @@ type AudioPlayerResetButtonProps = {
 
 const AudioPlayerResetButton: FC<AudioPlayerResetButtonProps> = ({ handleResetTrack }) => {
     return (
-        <button className="audio-player-play-button" onClick={() => handleResetTrack()}>Reset</button>
+        <Button className="audio-player-reset-button" handleButtonOnClick={handleResetTrack}><Reset /></Button>
     )
 }
 

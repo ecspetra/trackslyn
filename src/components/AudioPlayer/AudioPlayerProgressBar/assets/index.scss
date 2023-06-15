@@ -1,0 +1,61 @@
+.audio-player-progress-bar {
+	&__time-wrap {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		font-size: 14px;
+		font-variant-numeric: tabular-nums;
+	}
+
+	&__progress-wrap {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__controls-wrap {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.generic-button {
+			&:not(:last-child) {
+				margin-right: 4px;
+			}
+		}
+	}
+
+	&__progress{
+		width: calc(100% - 350px);
+		height: 12px;
+		outline: none;
+		border-radius: 4px;
+		-webkit-appearance: none;
+
+		&::-webkit-slider-thumb {
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			-webkit-appearance: none;
+			cursor: ew-resize;
+			background-color: white;
+		}
+	}
+
+	&__volume {
+		margin: 0 4px;
+		height: 12px;
+		outline: none;
+		border-radius: 4px;
+		-webkit-appearance: none;
+
+		&::-webkit-slider-thumb {
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			-webkit-appearance: none;
+			cursor: ew-resize;
+			background-color: white;
+		}
+	}
+}

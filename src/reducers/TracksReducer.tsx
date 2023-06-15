@@ -10,7 +10,7 @@ export type Store = typeof initialState;
 export const tracksReducer = (state: Store, action: Action) => {
 	switch(action.type) {
 		case 'ADD_TRACK':
-			const isTrackAlreadyExistInState = state.tracks.find((item) => item.id === action.payload.track.id);
+			const isTrackAlreadyExistInState = state.tracks.find((item) => item.track.id === action.payload.track.id);
 			if (isTrackAlreadyExistInState) {
 				return state;
 			} else {
@@ -23,6 +23,11 @@ export const tracksReducer = (state: Store, action: Action) => {
 			return {
 				...state,
 				currentTrack: action.payload,
+			}
+		case 'CLEAR_CURRENT_TRACK':
+			return {
+				...state,
+				currentTrack: null,
 			}
 		case 'CLEAR_TRACKS':
 			return {

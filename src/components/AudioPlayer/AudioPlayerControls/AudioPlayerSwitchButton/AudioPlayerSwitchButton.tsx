@@ -1,13 +1,26 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC } from "react";
+import Button from "../../../Button/Button";
+import Switch from "../../../../images/icons/Switch";
+import classNames from "classnames";
 
 type AudioPlayerNextButtonProps = {
-    handleSwitchTrack: () => void;
-    children: ReactNode;
+    handleSetPrevTrack?: () => void;
+    handleSetNextTrack?: () => void;
+    isPrevTrackExists?: boolean,
+    isNextTrackExists?: boolean,
+    isPrevButton?: boolean;
 }
-
-const AudioPlayerSwitchButton: FC<AudioPlayerNextButtonProps> = ({ handleSwitchTrack, children }) => {
+const AudioPlayerSwitchButton: FC<AudioPlayerNextButtonProps> = ({ handleSetPrevTrack, handleSetNextTrack, isPrevTrackExists, isNextTrackExists, isPrevButton }) => {
     return (
-        <button className="audio-player-play-button" onClick={() => handleSwitchTrack()}>{children}</button>
+        <>
+            {
+                isPrevButton ? (
+                    <Button className={classNames('audio-player-switch-button', 'audio-player-switch-button--prev', isPrevTrackExists === false && 'disabled')} handleButtonOnClick={handleSetPrevTrack}><Switch /></Button>
+                    ) : (
+                    <Button className={classNames('audio-player-switch-button', isNextTrackExists === false && 'disabled')} handleButtonOnClick={handleSetNextTrack}><Switch /></Button>
+                )
+            }
+        </>
     )
 }
 

@@ -1,31 +1,40 @@
 import React from "react";
-import './assets/index.css';
+import './assets/index.scss';
 import useAccessToken from "../../hooks/useAccessToken";
+import { BrowserRouter } from "react-router-dom";
+import {LINK_TO_FETCH_MY_TRACKS} from "../../constants/linksToFetch";
+import {TracksContextProvider} from "../Context/TracksContext/TracksContext";
+import SignedInContent from "../SignedInContent/SignedInContent";
 import { AUTH_LINK } from "../../auth/spotify-auth";
-import { LINK_TO_FETCH_MY_PROFILE, LINK_TO_FETCH_MY_TRACKS } from "../../linksToFetch/linksToFetch";
-import TrackList from "../TrackList/TrackList";
-import AudioPlayer from "../AudioPlayer/AudioPlayer";
-import { TracksContextProvider } from "../Context/TracksContext/TracksContext";
-import FetchSource from "../FetchSource/FetchSource";
-import UserInfo from "../UserInfo/UserInfo";
+import Logo from "../Logo/Logo";
 
 const App = () => {
 
 	const [token, handleLogout] = useAccessToken();
 
+	const getAppContent = () => {
+		if (token) {
+			return (
+				<TracksContextProvider linkToFetch={LINK_TO_FETCH_MY_TRACKS} token={token} handleLogout={handleLogout}>
+					<SignedInContent token={token} handleLogout={handleLogout} />
+				</TracksContextProvider>
+			)
+		} else {
+			return (
+				<div className="app__auth">
+					<Logo />
+					<a className="app__auth-link" href={AUTH_LINK}>Please Sign in</a>
+				</div>
+			)
+		}
+	}
+
 	return (
-		<div className="App">
-			<header className="App-header">
-				{!token ? <a href={AUTH_LINK}>Login to Spotify</a> : <button onClick={handleLogout}>Logout</button>}
-			</header>
-			<TracksContextProvider linkToFetch={LINK_TO_FETCH_MY_TRACKS} token={token}>
-				<AudioPlayer />
-				<TrackList />
-			</TracksContextProvider>
-			<FetchSource linkToFetch={LINK_TO_FETCH_MY_PROFILE}>
-				<UserInfo />
-			</FetchSource>
-		</div>
+		<BrowserRouter>
+			<div className="app">
+				{getAppContent()}
+			</div>
+		</BrowserRouter>
 	);
 }
 

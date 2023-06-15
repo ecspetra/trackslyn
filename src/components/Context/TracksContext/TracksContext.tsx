@@ -2,6 +2,8 @@ import React, { FC, useEffect, useState } from "react";
 import { createContext, useReducer } from 'react';
 import { initialState, Store, tracksReducer } from "../../../reducers/TracksReducer";
 import { Action, addTrack } from "../../../actions";
+import Button from "../../Button/Button";
+import Logo from "../../Logo/Logo";
 
 type TracksContext = {
 	state: Store;
@@ -13,10 +15,11 @@ export const TracksContext = createContext<TracksContext>({} as TracksContext);
 type TracksContextProviderProps = {
 	token: string;
 	linkToFetch: string;
-	children: JSX.Element[];
+	handleLogout: () => void;
+	children: JSX.Element|JSX.Element[];
 }
 
-export const TracksContextProvider: FC<TracksContextProviderProps> = ({ token, linkToFetch, children }) => {
+export const TracksContextProvider: FC<TracksContextProviderProps> = ({ token, linkToFetch, handleLogout, children }) => {
 	const [isResultLoaded, setIsResultLoaded] = useState(false);
 	const [currentResult, setCurrentResult] = useState<string>(linkToFetch);
 	const [nextResult, setNextResult] = useState<string>(null);
@@ -58,7 +61,13 @@ export const TracksContextProvider: FC<TracksContextProviderProps> = ({ token, l
 	}, [state]);
 
 	if (fetchError) {
-		return <div>Error</div>;
+		return (
+			<div className="app__auth">
+				<Logo />
+				<p className="app__text">Something went wrong. Please try again</p>
+				<Button className="app__auth-link" handleButtonOnClick={handleLogout}>Try again</Button>
+			</div>
+		);
 	} else if (!token) return;
 
 	const childrenWithProps = React.Children.map(children, (child) => (

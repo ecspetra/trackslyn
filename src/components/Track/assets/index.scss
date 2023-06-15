@@ -1,0 +1,95 @@
+.track {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	background-color: #2f3369;
+	padding: 15px;
+	border-radius: 12px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	position: relative;
+	overflow: hidden;
+
+	&:hover {
+		.track {
+			&__bg-wrap {
+				opacity: .6;
+			}
+		}
+	}
+
+	&:not(:last-child) {
+		margin-bottom: 20px;
+	}
+
+	&__image {
+		width: 80px;
+		height: 80px;
+		border-radius: 8px;
+		margin-right: 15px;
+		box-shadow: 0 5px 10px 0 rgba(#06071c, .6);
+	}
+
+	&__bg-wrap {
+		width: 45%;
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		opacity: .3;
+		transition: .3s;
+
+		&:before {
+			content: "";
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			background-image: linear-gradient(to right, transparent, #2f3369 90%);
+		}
+	}
+
+	&__bg {
+		width: 100%;
+	}
+
+	&__info-wrap {
+		font-size: 14px;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		z-index: 2;
+	}
+
+	&__name {
+		font-size: 18px;
+		font-weight: 800;
+		margin-bottom: 5px;
+	}
+
+	&__artist-wrap {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+	}
+
+	&__album-wrap {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+
+		svg {
+			width: 16px;
+			height: 16px;
+			margin-right: 4px;
+		}
+	}
+
+	&__artist-name {
+		margin-right: 4px;
+		margin-bottom: 5px;
+	}
+}

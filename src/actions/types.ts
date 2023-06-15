@@ -1,3 +1,4 @@
 export const ADD_TRACK = 'ADD_TRACK';
 export const SET_CURRENT_TRACK = 'SET_CURRENT_TRACK';
+export const CLEAR_CURRENT_TRACK = 'CLEAR_CURRENT_TRACK';
 export const CLEAR_TRACKS = 'CLEAR_TRACKS';

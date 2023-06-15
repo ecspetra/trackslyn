@@ -1,0 +1,59 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Mulish', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	color: white;
+	background-image: linear-gradient(to top, #0F122C, #1B1D3E);
+	position: relative;
+}
+
+#root {
+	width: 100%;
+	height: 100vh;
+}
+
+.app {
+	&__auth {
+		width: 320px;
+		text-align: center;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		.logo {
+			margin-bottom: 40px;
+		}
+	}
+
+	&__text {
+		margin-bottom: 40px;
+	}
+
+	&__auth-link,
+	&__auth-link.generic-button {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 40px;
+		background-color: #6369ff;
+		border: 2px solid transparent;
+		border-radius: 8px;
+		transition: .3s;
+		text-decoration: none;
+		color: white;
+		font-weight: 600;
+
+		&:hover {
+			background-color: transparent;
+			border-color: rgba(#6369ff, .3);
+		}
+	}
+}

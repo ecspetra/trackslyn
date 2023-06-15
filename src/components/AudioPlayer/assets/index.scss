@@ -1,0 +1,103 @@
+.audio-player {
+    width: 100%;
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    padding: 20px;
+    background-color: rgba(#070912, .8);
+    backdrop-filter: blur(5px);
+    z-index: 2;
+
+    &__content {
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto;
+    }
+
+    &__image {
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        margin-right: 15px;
+        box-shadow: 0 5px 10px 0 rgba(#06071c, .6);
+    }
+
+    &__track-info-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    &__close-button {
+        background-color: transparent;
+
+        svg {
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    &__track-info {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    &__track-name {
+        font-weight: 800;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    &__album-info {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+
+        svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 4px;
+        }
+    }
+
+    &__artist-name {
+        margin-right: 10px;
+    }
+
+    .audio-player-switch-button {
+        &--prev {
+            transform: rotate(-180deg);
+        }
+
+        &.disabled {
+            pointer-events: none;
+            background-color: #293152;
+
+            svg {
+                path {
+                    fill: #707ba6;
+                }
+            }
+        }
+    }
+
+    .audio-player-mute-button {
+        position: relative;
+
+        &--looped {
+            &:before {
+                content: "";
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                position: absolute;
+                right: -2px;
+                top: -2px;
+                background-color: white;
+            }
+        }
+    }
+}

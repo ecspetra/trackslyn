@@ -1,4 +1,7 @@
 import React, { FC } from "react";
+import Pause from "../../../../images/icons/Pause";
+import Play from "../../../../images/icons/Play";
+import Button from "../../../Button/Button";
 
 type AudioPlayerPlayButtonProps = {
 	isPlaying: boolean;
@@ -8,7 +11,7 @@ type AudioPlayerPlayButtonProps = {
 
 const AudioPlayerPlayButton: FC<AudioPlayerPlayButtonProps> = ({ isPlaying, handlePlayTrack, handlePauseTrack }) => {
 	return (
-		<button className="audio-player-play-button" onClick={isPlaying ? () => handlePauseTrack() : () => handlePlayTrack()}>{isPlaying ? 'Pause' : 'Play'}</button>
+		<Button className="audio-player-play-button" handleButtonOnClick={isPlaying ? handlePauseTrack : handlePlayTrack}>{isPlaying ? <Pause /> : <Play />}</Button>
 	)
 }
 

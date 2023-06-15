@@ -2,6 +2,7 @@ import React, { FC, useContext, useEffect } from "react";
 import { TracksContext } from "../Context/TracksContext/TracksContext";
 import { clearTracks } from "../../actions";
 import Track from "../Track/Track";
+import "./assets/index.scss";
 
 type TrackListProps = {
 	isResultLoaded?: boolean;
@@ -9,7 +10,6 @@ type TrackListProps = {
 }
 
 const TrackList: FC<TrackListProps> = ({ isResultLoaded, handleSetNextResult }) => {
-
 	const {state, dispatch} = useContext(TracksContext);
 
 	const handleScroll = (event) => {
@@ -24,11 +24,13 @@ const TrackList: FC<TrackListProps> = ({ isResultLoaded, handleSetNextResult }) 
 	}, []);
 
 	return (
-		<div className="track-list" style={{height: '300px', overflow: 'scroll'}} onScroll={(event) => handleScroll(event)}>
-			{state.tracks.map((item, idx) => (
-				<Track key={item.track.id} idx={idx} trackInfo={item} />
-			))}
-			{isResultLoaded === false && <p>Loading</p>}
+		<div className="track-list" onScroll={(event) => handleScroll(event)}>
+			<div className="track-list__content">
+				{state.tracks.map((item, idx) => (
+					<Track key={item.track.id} idx={idx} trackInfo={item} />
+				))}
+				{isResultLoaded === false && <p className="track-list__text">Loading...</p>}
+			</div>
 		</div>
 	);
 };
