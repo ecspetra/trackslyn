@@ -43,6 +43,7 @@ export const TracksContextProvider: FC<TracksContextProviderProps> = ({ token, l
 
 	useEffect(() => {
 		setIsResultLoaded(false);
+
 		const handleFetchSource = async () => {
 			await fetch(currentResult, {
 				headers: {
@@ -76,8 +77,6 @@ export const TracksContextProvider: FC<TracksContextProviderProps> = ({ token, l
 			</div>
 		);
 	}
-
-	console.log(state)
 
 	return (
 		<TracksContext.Provider value={{state, dispatch}}>
