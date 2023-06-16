@@ -70,6 +70,8 @@ export const TracksContextProvider: FC<TracksContextProviderProps> = ({ token, l
 		);
 	} else if (!token) return;
 
+	console.log(token)
+
 	const childrenWithProps = React.Children.map(children, (child) => (
 		React.cloneElement(child, {
 			handleSetNextResult: handleSetNextResult,
