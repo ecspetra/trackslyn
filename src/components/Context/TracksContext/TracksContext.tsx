@@ -34,6 +34,13 @@ export const TracksContextProvider: FC<TracksContextProviderProps> = ({ token, l
 		setCurrentResult(nextResult);
 	}
 
+	const childrenWithProps = React.Children.map(children, (child) => (
+		React.cloneElement(child, {
+			handleSetNextResult: handleSetNextResult,
+			isResultLoaded: isResultLoaded
+		})
+	));
+
 	useEffect(() => {
 		setIsResultLoaded(false);
 		const handleFetchSource = async () => {
@@ -68,16 +75,9 @@ export const TracksContextProvider: FC<TracksContextProviderProps> = ({ token, l
 				<Button className="app__auth-link" handleButtonOnClick={handleLogout}>Try again</Button>
 			</div>
 		);
-	} else if (!token) return;
+	}
 
-	console.log(token)
-
-	const childrenWithProps = React.Children.map(children, (child) => (
-		React.cloneElement(child, {
-			handleSetNextResult: handleSetNextResult,
-			isResultLoaded: isResultLoaded
-		})
-	));
+	console.log(state)
 
 	return (
 		<TracksContext.Provider value={{state, dispatch}}>
