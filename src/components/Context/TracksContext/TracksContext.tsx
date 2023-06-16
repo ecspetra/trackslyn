@@ -4,7 +4,6 @@ import { initialState, Store, tracksReducer } from "../../../reducers/TracksRedu
 import { Action, addTrack } from "../../../actions";
 import Button from "../../Button/Button";
 import Logo from "../../Logo/Logo";
-import Track from "../../Track/Track";
 
 type TracksContext = {
 	state: Store;
@@ -82,11 +81,6 @@ export const TracksContextProvider: FC<TracksContextProviderProps> = ({ token, l
 	return (
 		<TracksContext.Provider value={{state, dispatch}}>
 			{childrenWithProps}
-			<div>
-				{state.tracks.map((item, idx) => (
-					<Track key={item.track.id} idx={idx} trackInfo={item} />
-				))}
-			</div>
 		</TracksContext.Provider>
 	);
 }

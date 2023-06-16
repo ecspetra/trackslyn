@@ -12,9 +12,6 @@ type TrackListProps = {
 const TrackList: FC<TrackListProps> = ({ isResultLoaded, handleSetNextResult }) => {
 	const {state, dispatch} = useContext(TracksContext);
 
-	console.log(state)
-
-
 	const handleScroll = (event) => {
 		const isBottomOfList = event.target.scrollHeight - event.target.scrollTop === event.target.clientHeight;
 		if (isBottomOfList) handleSetNextResult();
