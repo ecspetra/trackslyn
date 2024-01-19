@@ -5,12 +5,12 @@ import { Action, addTrack } from "../../../actions";
 import Button from "../../Button/Button";
 import Logo from "../../Logo/Logo";
 
-type TracksContext = {
+type TracksContextType = {
 	state: Store;
 	dispatch: React.Dispatch<Action>;
 };
 
-export const TracksContext = createContext<TracksContext>({} as TracksContext);
+export const TracksContext = createContext<TracksContextType>({} as TracksContextType);
 
 type TracksContextProviderProps = {
 	token: string;

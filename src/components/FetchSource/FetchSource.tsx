@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ResultsContext } from "../Context/ResultsContext/ResultsContext";
 import useAccessToken from "../../hooks/useAccessToken";
-import {addTrack} from "../../actions";
 
 const FetchSource = ({ children, linkToFetch }) => {
 	const [isResultLoaded, setIsResultLoaded] = useState(false);

@@ -5,7 +5,7 @@ import "./assets/index.scss";
 import TrackPlayButton from "./TrackPlayButton/TrackPlayButton";
 import Disk from "../../images/icons/Disk";
 
-type Track = {
+type TrackType = {
 	track: {
 		id: string,
 		album: {
@@ -20,7 +20,7 @@ type Track = {
 
 type TrackProps = {
 	idx: number;
-	trackInfo: Track;
+	trackInfo: TrackType;
 }
 
 const Track: FC<TrackProps> = ({ idx, trackInfo }) => {
@@ -46,7 +46,7 @@ const Track: FC<TrackProps> = ({ idx, trackInfo }) => {
 				<div className="track__name-wrap">
 					<p className="track__name">{trackName}</p>
 					<div className="track__artist-wrap">
-						{trackInfo.track.artists.map((artist: Track['track'], idx) => <p className="track__artist-name" key={artist.name}>{idx === trackInfo.track.artists.length - 1 ? artist.name : (artist.name + ',')}</p>)}
+						{trackInfo.track.artists.map((artist: TrackType['track'], idx) => <p className="track__artist-name" key={artist.name}>{idx === trackInfo.track.artists.length - 1 ? artist.name : (artist.name + ',')}</p>)}
 					</div>
 					<div className="track__album-wrap">
 						<Disk />

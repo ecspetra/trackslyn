@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const useAccessToken = () => {
 
-	const [token, setToken] = useState("");
+	const [token, setToken] = useState<string>("");
 
 	const handleLogout = () => {
 		setToken("");
