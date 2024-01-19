@@ -66,7 +66,7 @@ export const TracksContextProvider: FC<TracksContextProviderProps> = ({ token, l
 			if (!nextResult) setNextResult(null);
 			setIsResultLoaded(true);
 		}
-	}, [state]);
+	}, [state, fetchError]);
 
 	if (fetchError) {
 		return (

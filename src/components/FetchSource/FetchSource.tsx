@@ -31,7 +31,7 @@ const FetchSource = ({ children, linkToFetch }) => {
 		if (result || fetchError) {
 			setIsResultLoaded(true);
 		}
-	}, [result]);
+	}, [result, fetchError]);
 
 	if (fetchError) {
 		return;
