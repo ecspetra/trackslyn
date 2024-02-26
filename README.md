@@ -9,3 +9,4 @@ Web audio player that grants access to a user's Spotify tracks upon registration
 ## Created with:
 React, TypeScript, HTML, SCSS, Spotify API
 
+Designed and developed by Yuliia Tkachenko, 2024
