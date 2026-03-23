@@ -1,30 +1,33 @@
 import { useEffect, useState } from "react";
 
 const useAccessToken = () => {
-
 	const [token, setToken] = useState<string>("");
 
 	const handleLogout = () => {
 		setToken("");
 		window.localStorage.removeItem("token");
-	}
+	};
 
 	useEffect(() => {
+		let tokenFromStorage = window.localStorage.getItem("token");
 		const hash = window.location.hash;
-		let token = window.localStorage.getItem("token");
 
-		if (!token && hash) {
-			token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1];
+		if (!tokenFromStorage && hash) {
+			const params = new URLSearchParams(hash.substring(1));
+			const accessToken = params.get("access_token");
+
+			if (accessToken) {
+				tokenFromStorage = accessToken;
+				window.localStorage.setItem("token", accessToken);
+			}
 
 			window.location.hash = "";
-			window.localStorage.setItem("token", token);
 		}
 
-		setToken(token);
-
+		setToken(tokenFromStorage || "");
 	}, []);
 
-	return [token, handleLogout];
-}
+	return [token, handleLogout] as const;
+};
 
 export default useAccessToken;
