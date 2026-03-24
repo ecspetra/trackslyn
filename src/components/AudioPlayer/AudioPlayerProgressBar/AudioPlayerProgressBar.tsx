@@ -49,34 +49,6 @@ const AudioPlayerProgressBar: FC<AudioPlayerProgressBarProps> = ({ trackRef, tra
     const progressBarPercentage = (currentTime * 100) / duration;
     const volumeBarPercentage = (Number(volume) * 100);
 
-	require('dotenv').config();
-const spotifyPreviewFinder = require('spotify-preview-finder');
-
-	async function example() {
-  try {
-    // Search by song name only (limit is optional, default is 5)
-    const result = await spotifyPreviewFinder('Böse Lügen (Body Mix)', 3);
-    
-    if (result.success) {
-      console.log(`Search Query Used: ${result.searchQuery}`);
-      result.results.forEach(song => {
-        console.log(`\nSong: ${song.name}`);
-        console.log(`Album: ${song.albumName}`);
-        console.log(`Release Date: ${song.releaseDate}`);
-        console.log(`Popularity: ${song.popularity}`);
-        console.log(`Duration: ${Math.round(song.durationMs / 1000)}s`);
-        console.log(`Spotify URL: ${song.spotifyUrl}`);
-        console.log('Preview URLs:');
-        song.previewUrls.forEach(url => console.log(`- ${url}`));
-      });
-    } else {
-      console.error('Error:', result.error);
-    }
-  } catch (error) {
-    console.error('Error:', error.message);
-  }
-}
-
     const handleUpdateCurrentTime = () => {
         setCurrentTime(trackRef.current.currentTime);
     }
@@ -87,7 +59,6 @@ const spotifyPreviewFinder = require('spotify-preview-finder');
 
     const handlePlayTrack = () => {
         trackRef.current.play();
-		example();
         setIsPlaying(true);
     }
 
