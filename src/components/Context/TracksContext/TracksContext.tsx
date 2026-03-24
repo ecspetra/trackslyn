@@ -52,6 +52,7 @@ export const TracksContextProvider: FC<TracksContextProviderProps> = ({ token, l
 			}).then((data) => data.json())
 				.then(async (data) => {
 					data.items.map((item) => dispatch(addTrack(item.track)));
+					console.log("data", data)
 					setNextResult(data.next);
 				}).catch((error) => setFetchError(error));
 
