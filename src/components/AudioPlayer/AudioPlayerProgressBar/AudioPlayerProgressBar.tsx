@@ -58,6 +58,7 @@ const AudioPlayerProgressBar: FC<AudioPlayerProgressBarProps> = ({ trackRef, tra
 
     const handlePlayTrack = () => {
         trackRef.current.play();
+		console.log(trackRef.current);
         setIsPlaying(true);
     }
 

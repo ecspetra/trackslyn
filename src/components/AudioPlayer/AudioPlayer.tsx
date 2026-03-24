@@ -55,7 +55,6 @@ const AudioPlayer = () => {
 						</div>
 					</div>
 					<Button className="audio-player__close-button" handleButtonOnClick={handleClosePlayer}><Close /></Button>
-
 				</div>
 				<AudioPlayerProgressBar
 					trackRef={trackRef}
