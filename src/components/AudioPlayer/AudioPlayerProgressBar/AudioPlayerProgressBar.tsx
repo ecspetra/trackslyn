@@ -66,7 +66,7 @@ const AudioPlayerProgressBar: FC<AudioPlayerProgressBarProps> = ({ trackRef, tra
 	if (!trackRef.current) return;
 
 	const playPromise = trackRef.current.play();
-	console.log(trackSrc)
+	console.log(firstTrackFromState)
 
 	if (playPromise !== undefined) {
 		playPromise.catch(err => {
