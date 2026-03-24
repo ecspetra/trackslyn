@@ -5,26 +5,43 @@ const useAccessToken = () => {
 
 	const handleLogout = () => {
 		setToken("");
-		window.localStorage.removeItem("token");
+		localStorage.removeItem("token");
 	};
 
 	useEffect(() => {
-		let tokenFromStorage = window.localStorage.getItem("token");
-		const hash = window.location.hash;
+		const code = new URLSearchParams(window.location.search).get("code");
+		const storedToken = localStorage.getItem("token");
 
-		if (!tokenFromStorage && hash) {
-			const params = new URLSearchParams(hash.substring(1));
-			const accessToken = params.get("access_token");
-
-			if (accessToken) {
-				tokenFromStorage = accessToken;
-				window.localStorage.setItem("token", accessToken);
-			}
-
-			window.location.hash = "";
+		if (storedToken) {
+			setToken(storedToken);
+			return;
 		}
 
-		setToken(tokenFromStorage || "");
+		if (code) {
+			const codeVerifier = localStorage.getItem("code_verifier");
+
+			fetch("https://accounts.spotify.com/api/token", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded",
+				},
+				body: new URLSearchParams({
+					client_id: "311bcf78c360405099597286478222fd",
+					grant_type: "authorization_code",
+					code,
+					redirect_uri: "https://trackslyn.yuliia-tkachenko.dev/",
+					code_verifier: codeVerifier || "",
+				}),
+			})
+				.then(res => res.json())
+				.then(data => {
+					if (data.access_token) {
+						localStorage.setItem("token", data.access_token);
+						setToken(data.access_token);
+						window.history.replaceState({}, document.title, "/");
+					}
+				});
+		}
 	}, []);
 
 	return [token, handleLogout] as const;

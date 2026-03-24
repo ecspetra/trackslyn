@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './assets/index.scss';
 import { BrowserRouter } from "react-router-dom";
 import {LINK_TO_FETCH_MY_TRACKS} from "../../constants/linksToFetch";
 import {TracksContextProvider} from "../Context/TracksContext/TracksContext";
 import SignedInContent from "../SignedInContent/SignedInContent";
-import { AUTH_LINK } from "../../auth/spotify-auth";
 import Logo from "../Logo/Logo";
 import useAccessToken from "../../hooks/useAccessToken";
+import { getAuthLink } from "../../auth/spotify-auth";
 
 const App = () => {
 	const [token, handleLogout] = useAccessToken();
+	const [authUrl, setAuthUrl] = useState("");
+
+	useEffect(() => {
+		getAuthLink().then(setAuthUrl);
+	}, []);
 
 	const getAppContent = () => {
 		if (token) {
@@ -22,7 +27,7 @@ const App = () => {
 			return (
 				<div className="app__auth">
 					<Logo />
-					<a className="app__auth-link" href={AUTH_LINK}>Please Sign in</a>
+					<a className="app__auth-link" href={authUrl}>Please Sign in</a>
 				</div>
 			)
 		}
