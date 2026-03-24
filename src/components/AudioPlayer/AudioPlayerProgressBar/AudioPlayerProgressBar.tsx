@@ -56,11 +56,26 @@ const AudioPlayerProgressBar: FC<AudioPlayerProgressBarProps> = ({ trackRef, tra
         setDuration(Math.round(trackRef.current.duration));
     }
 
-    const handlePlayTrack = () => {
-        trackRef.current.play();
-		console.log(trackRef.current);
-        setIsPlaying(true);
-    }
+    // const handlePlayTrack = () => {
+    //     trackRef.current.play();
+	// 	console.log(trackSrc)
+    //     setIsPlaying(true);
+    // }
+
+	const handlePlayTrack = () => {
+	if (!trackRef.current) return;
+
+	const playPromise = trackRef.current.play();
+	console.log(trackSrc)
+
+	if (playPromise !== undefined) {
+		playPromise.catch(err => {
+			console.log("Play blocked:", err);
+		});
+	}
+
+	setIsPlaying(true);
+};
 
     const handlePauseTrack = () => {
         trackRef.current.pause();
