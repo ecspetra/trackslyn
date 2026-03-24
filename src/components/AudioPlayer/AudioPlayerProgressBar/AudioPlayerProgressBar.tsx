@@ -6,8 +6,7 @@ import {setCurrentTrack} from "../../../actions";
 import {TracksContext} from "../../Context/TracksContext/TracksContext";
 import AudioPlayerMuteButton from "../AudioPlayerControls/AudioPlayerMuteButton/AudioPlayerMuteButton";
 import AudioPlayerLoopButton from "../AudioPlayerControls/AudioPlayerLoopButton/AudioPlayerLoopButton";
-require('dotenv').config();
-const spotifyPreviewFinder = require('spotify-preview-finder');
+
 
 import './assets/index.scss';
 
@@ -49,6 +48,9 @@ const AudioPlayerProgressBar: FC<AudioPlayerProgressBarProps> = ({ trackRef, tra
     const isNextTrackExists = nextTrackFromState !== undefined;
     const progressBarPercentage = (currentTime * 100) / duration;
     const volumeBarPercentage = (Number(volume) * 100);
+
+	require('dotenv').config();
+const spotifyPreviewFinder = require('spotify-preview-finder');
 
 	async function example() {
   try {
