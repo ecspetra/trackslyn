@@ -1,9 +1,10 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import { setCurrentTrack } from "../../actions";
 import { TracksContext } from "../Context/TracksContext/TracksContext";
 import "./assets/index.scss";
 import TrackPlayButton from "./TrackPlayButton/TrackPlayButton";
 import Disk from "../../images/icons/Disk";
+import { fetchPreviewFromITunes } from "../../handlers/fetchPreviewFromITunes";
 
 type TrackType = {
 	track: {
@@ -24,7 +25,6 @@ type TrackProps = {
 }
 
 const Track: FC<TrackProps> = ({ idx, trackInfo }) => {
-
 	const {dispatch} = useContext(TracksContext);
 
 	const isTrackAlbumImageExists = trackInfo.track.album.images.length;
@@ -32,9 +32,21 @@ const Track: FC<TrackProps> = ({ idx, trackInfo }) => {
 	const trackAlbumName = trackInfo.track.album.name;
 	const trackAlbumImage = trackInfo.track.album.images[0].url;
 
-	const handleSetCurrentTrack = (trackInfo) => {
-		dispatch(setCurrentTrack(idx, trackInfo.track));
-	}
+	const handleSetCurrentTrack = async (trackInfo) => {
+		const artistName = trackInfo.track.artists?.[0]?.name;
+		const trackName = trackInfo.track.name;
+
+		let previewUrl = trackInfo.track.preview_url;
+
+		if (!previewUrl && artistName) {
+			previewUrl = await fetchPreviewFromITunes(trackName, artistName);
+		}
+
+		dispatch(setCurrentTrack(idx, {
+			...trackInfo.track,
+			preview_url: previewUrl,
+		}));
+	};
 
 	return (
 		<div className="track">

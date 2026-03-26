@@ -6,7 +6,7 @@ import {setCurrentTrack} from "../../../actions";
 import {TracksContext} from "../../Context/TracksContext/TracksContext";
 import AudioPlayerMuteButton from "../AudioPlayerControls/AudioPlayerMuteButton/AudioPlayerMuteButton";
 import AudioPlayerLoopButton from "../AudioPlayerControls/AudioPlayerLoopButton/AudioPlayerLoopButton";
-
+import { fetchPreviewFromITunes } from "../../../handlers/fetchPreviewFromITunes";
 
 import './assets/index.scss';
 
@@ -78,27 +78,31 @@ const AudioPlayerProgressBar: FC<AudioPlayerProgressBarProps> = ({ trackRef, tra
     }
 
     const handleSetFirstTrack = async () => {
-        await dispatch(setCurrentTrack(0, firstTrackFromState.track));
-        handlePlayTrack();
-    }
+		const trackWithPreview = await getTrackWithPreview(firstTrackFromState.track);
+
+		await dispatch(setCurrentTrack(0, trackWithPreview));
+		handlePlayTrack();
+	};
 
     const handleSetPrevTrack = async () => {
-        if (prevTrackFromState) {
-            if (isPlaying) {
-                await dispatch(setCurrentTrack(trackIdx - 1, prevTrackFromState.track));
-                handlePlayTrack();
-            } else dispatch(setCurrentTrack(trackIdx - 1, prevTrackFromState.track));
-        }
-    }
+		if (prevTrackFromState) {
+			const trackWithPreview = await getTrackWithPreview(prevTrackFromState.track);
+
+			await dispatch(setCurrentTrack(trackIdx - 1, trackWithPreview));
+
+			if (isPlaying) handlePlayTrack();
+		}
+	};
 
     const handleSetNextTrack = async () => {
-        if (nextTrackFromState) {
-            if (isPlaying) {
-                await dispatch(setCurrentTrack(trackIdx + 1, nextTrackFromState.track));
-                handlePlayTrack();
-            } else dispatch(setCurrentTrack(trackIdx + 1, nextTrackFromState.track));
-        }
-    }
+		if (nextTrackFromState) {
+			const trackWithPreview = await getTrackWithPreview(nextTrackFromState.track);
+
+			await dispatch(setCurrentTrack(trackIdx + 1, trackWithPreview));
+
+			if (isPlaying) handlePlayTrack();
+		}
+	};
 
     const handleSetVolume = (event) => {
         trackRef.current.volume = event.target.value;
@@ -139,6 +143,24 @@ const AudioPlayerProgressBar: FC<AudioPlayerProgressBarProps> = ({ trackRef, tra
     const handleLoopTrack = () => {
         setIsLooped(prevState => !prevState);
     }
+
+	const getTrackWithPreview = async (track) => {
+		let previewUrl = track.preview_url;
+
+		if (!previewUrl) {
+			const artistName = track.artists?.[0]?.name;
+			const trackName = track.name;
+
+			if (artistName && trackName) {
+				previewUrl = await fetchPreviewFromITunes(trackName, artistName);
+			}
+		}
+
+		return {
+			...track,
+			preview_url: previewUrl,
+		};
+	};
 
     useEffect(() => {
         progressBarRef.current.value = currentTime;
