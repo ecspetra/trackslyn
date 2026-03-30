@@ -50,9 +50,6 @@ const Track: FC<TrackProps> = ({ idx, trackInfo }) => {
 
 	return (
 		<div className="track">
-			<div className="track__bg-wrap">
-				<img className="track__bg" src={trackAlbumImage} alt=""/>
-			</div>
 			<div className="track__info-wrap">
 				{isTrackAlbumImageExists && <img className="track__image" src={trackAlbumImage} alt=""/>}
 				<div className="track__name-wrap">

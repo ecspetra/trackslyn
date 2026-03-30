@@ -5,8 +5,9 @@
     bottom: 0;
     transform: translateX(-50%);
     padding: 20px;
-    background-color: rgba(#070912, .8);
-    backdrop-filter: blur(5px);
+    background-color: rgba(#eff2f7, .8);
+	border-top: #eff2f7;
+    backdrop-filter: blur(20px);
     z-index: 2;
 
     &__content {
@@ -20,7 +21,7 @@
         height: 80px;
         border-radius: 8px;
         margin-right: 15px;
-        box-shadow: 0 5px 10px 0 rgba(#06071c, .6);
+        box-shadow: 0 4px 4px 0 #e6eaf1;
     }
 
     &__track-info-wrap {
@@ -30,7 +31,16 @@
     }
 
     &__close-button {
-        background-color: transparent;
+		margin-bottom: auto;
+
+		&.generic-button {
+			background-image: none;
+			background-color: transparent;
+
+			&:before {
+				background-color: #e6eaf1;
+			}
+		}
 
         svg {
             width: 12px;
@@ -41,7 +51,7 @@
     &__track-info {
         display: flex;
         justify-content: flex-start;
-        align-items: center;
+        align-items: flex-start;
         margin-bottom: 15px;
     }
 
@@ -51,44 +61,53 @@
         margin-bottom: 5px;
     }
 
-    &__album-info {
+    &__artist-info {
         display: flex;
         align-items: center;
         font-size: 14px;
+		margin-bottom: 12px;
+    }
+
+	&__album-wrap {
+		display: flex;
+        align-items: center;
+        font-size: 13px;
 
         svg {
             width: 16px;
             height: 16px;
             margin-right: 4px;
+
+			circle {
+				fill: black;
+			}
         }
-    }
+
+	}
 
     &__artist-name {
-        margin-right: 10px;
+        margin-right: 4px;
+		margin-bottom: 4px;
     }
 
     .audio-player-switch-button {
         &--prev {
-            transform: rotate(-180deg);
+			svg {
+				transform: rotate(-180deg);
+			}
         }
 
         &.disabled {
             pointer-events: none;
-            background-color: #293152;
-
-            svg {
-                path {
-                    fill: #707ba6;
-                }
-            }
+			opacity: .2;
         }
     }
 
-    .audio-player-mute-button {
+    .audio-player-button {
         position: relative;
 
         &--looped {
-            &:before {
+            &:after {
                 content: "";
                 width: 12px;
                 height: 12px;
@@ -96,8 +115,32 @@
                 position: absolute;
                 right: -2px;
                 top: -2px;
-                background-color: white;
+                background-color: black;
             }
         }
     }
+}
+
+@media (max-width: 640px) {
+	.audio-player {
+		padding: 10px;
+
+		&__track-info {
+			margin-bottom: 0;
+		}
+
+		 &__image {
+			width: 40px;
+			height: 40px;
+			margin-right: 10px;
+		}
+
+		&__track-name {
+			font-size: 16px;
+		}
+
+		&__artist-name {
+			font-size: 13px;
+		}
+	}
 }

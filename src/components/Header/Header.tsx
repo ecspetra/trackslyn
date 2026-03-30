@@ -5,6 +5,7 @@ import UserProfile from "../UserProfile/UserProfile";
 
 import './assets/index.scss';
 import Button from "../Button/Button";
+import Logout from "../../images/icons/Logout";
 
 type HeaderProps = {
     token: string;
@@ -15,11 +16,11 @@ const Header: FC<HeaderProps> = ({ token, handleLogout, ...rest }) => {
     return (
         <div className="header">
             <div className="header__content">
-                <Logo />
-                <Search {...rest} />
+				<Logo />
+				<Search {...rest} />
                 <div className="header__user-wrap">
                     <UserProfile />
-                    <Button className="header__logout-button" handleButtonOnClick={handleLogout}>Logout</Button>
+                    <Button className="header__logout-button" handleButtonOnClick={handleLogout}><Logout /></Button>
                 </div>
             </div>
         </div>

@@ -1,12 +1,14 @@
 import * as React from "react"
 
 const Play = () => (
-    <svg xmlns="http://www.w3.org/2000/svg"
-         width={13}
-         height={14}
-         viewBox="0 0 13 14">
-        <path d="M.5 0v14l11-7-11-7Z" fill="#FFFFFF" fillRule="evenodd" />
-    </svg>
+    <svg
+		xmlns="http://www.w3.org/2000/svg"
+		width={512}
+		height={512}
+		viewBox="0 0 256 256"
+	>
+		<path fill="currentColor" d="M234.49 111.07 90.41 22.94A20 20 0 0 0 60 39.87v176.26a20 20 0 0 0 30.41 16.93l144.08-88.13a19.82 19.82 0 0 0 0-33.86ZM84 208.85V47.15L216.16 128Z" />
+	</svg>
 )
 
 export default Play;

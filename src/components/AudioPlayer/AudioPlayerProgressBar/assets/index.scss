@@ -11,18 +11,14 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		gap: 8px;
 	}
 
 	&__controls-wrap {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-
-		.generic-button {
-			&:not(:last-child) {
-				margin-right: 4px;
-			}
-		}
+		gap: 8px;
 	}
 
 	&__progress{
@@ -43,7 +39,6 @@
 	}
 
 	&__volume {
-		margin: 0 4px;
 		height: 12px;
 		outline: none;
 		border-radius: 4px;
@@ -56,6 +51,33 @@
 			-webkit-appearance: none;
 			cursor: ew-resize;
 			background-color: white;
+		}
+	}
+}
+
+@media (max-width: 640px) {
+	.audio-player-progress-bar {
+		&__progress-wrap {
+			flex-direction: column;
+			gap: 10px;
+		}
+
+		&__progress {
+			width: 100%;
+		}
+
+		&__volume {
+			width: 100%;
+		}
+
+		&__controls-wrap {
+			width: 100%;
+			justify-content: center;
+		}
+
+		&__current-time {
+			margin-left: auto;
+			font-size: 13px;
 		}
 	}
 }

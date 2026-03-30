@@ -1,10 +1,10 @@
 .search-results {
 	position: absolute;
 	top: calc(100% + 10px);
-	width: 320px;
+	width: 100%;
 	max-height: 250px;
 	overflow-y: auto;
-	background-color: #0F122C;
-	border-radius: 8px;
-	padding: 20px;
+	background-color: black;
+	border-radius: 20px;
+	padding: 8px;
 }

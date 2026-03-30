@@ -8,7 +8,7 @@ type AudioPlayerResetButtonProps = {
 
 const AudioPlayerResetButton: FC<AudioPlayerResetButtonProps> = ({ handleResetTrack }) => {
     return (
-        <Button className="audio-player-reset-button" handleButtonOnClick={handleResetTrack}><Reset /></Button>
+        <Button className="generic-button--secondary audio-player-reset-button" handleButtonOnClick={handleResetTrack}><Reset /></Button>
     )
 }
 

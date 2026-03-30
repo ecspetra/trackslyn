@@ -45,12 +45,14 @@ const AudioPlayer = () => {
 						{isTrackAlbumImageExists && <img className="audio-player__image" src={trackAlbumImage} alt=""/>}
 						<div className="audio-player__info-wrap">
 							<p className="audio-player__track-name">{currentTrack.track.name}</p>
-							<div className="audio-player__album-info">
-								{currentTrack.track.artists.map((artist) => {
-									return <p key={artist.name} className="audio-player__artist-name">{artist.name}</p>
+							<div className="audio-player__artist-info">
+								{currentTrack.track.artists.map((artist, idx) => {
+									return <p key={artist.name} className="audio-player__artist-name">{idx === currentTrack.track.artists.length - 1 ? artist.name : (artist.name + ',')}</p>
 								})}
+							</div>
+							<div className="audio-player__album-wrap">
 								<Disk />
-								<p className="audio-player__album-name">{currentTrack.track.album.name}</p>
+								<p className="audio-player__album">{currentTrack.track.album.name}</p>
 							</div>
 						</div>
 					</div>

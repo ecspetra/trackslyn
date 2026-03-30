@@ -2,9 +2,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+	background-color: rgb(35, 35, 35);
+	padding: 12px;
+	border-radius: 12px;
+	gap: 12px;
 
     &:not(:last-child) {
-        margin-bottom: 20px;
+        margin-bottom: 8px;
     }
 
     &__name-wrap {
@@ -14,29 +18,42 @@
     &__name {
         font-size: 18px;
         font-weight: 800;
-        margin-bottom: 5px;
+		color: white;
+		margin-bottom: 5px;
     }
+
+	&__album {
+		color: white;
+	}
 
     &__album-wrap {
         display: flex;
         justify-content: flex-start;
         align-items: center;
+		margin-top: 20px;
 
         svg {
             width: 16px;
             height: 16px;
             margin-right: 4px;
+			flex: none;
+
+			circle {
+				fill: white;
+				stroke: black;
+			}
         }
     }
 
     &__artist-name {
         margin-right: 4px;
-        margin-bottom: 5px;
+		color: white;
     }
 
     &__artist-wrap {
         display: flex;
         justify-content: flex-start;
         align-items: center;
+		flex-wrap: wrap;
     }
 }

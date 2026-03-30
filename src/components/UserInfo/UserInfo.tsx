@@ -20,10 +20,6 @@ const UserInfo = () => {
                     <p className="user-info__name-short">{userNameShort}</p>
                 </div>
             )}
-            <div className="user-info__name-wrap">
-                <p className="user-info__name">{userName}</p>
-                {isPremium && <p className="user-info__premium">Premium</p>}
-            </div>
         </div>
     )
 }

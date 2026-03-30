@@ -15,9 +15,9 @@ const AudioPlayerSwitchButton: FC<AudioPlayerNextButtonProps> = ({ handleSetPrev
         <>
             {
                 isPrevButton ? (
-                    <Button className={classNames('audio-player-switch-button', 'audio-player-switch-button--prev', isPrevTrackExists === false && 'disabled')} handleButtonOnClick={handleSetPrevTrack}><Switch /></Button>
+                    <Button className={classNames('generic-button--secondary audio-player-switch-button', 'audio-player-switch-button--prev', isPrevTrackExists === false && 'disabled')} handleButtonOnClick={handleSetPrevTrack}><Switch /></Button>
                     ) : (
-                    <Button className={classNames('audio-player-switch-button', isNextTrackExists === false && 'disabled')} handleButtonOnClick={handleSetNextTrack}><Switch /></Button>
+                    <Button className={classNames('generic-button--secondary audio-player-switch-button', isNextTrackExists === false && 'disabled')} handleButtonOnClick={handleSetNextTrack}><Switch /></Button>
                 )
             }
         </>

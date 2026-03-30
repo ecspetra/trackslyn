@@ -27,7 +27,7 @@ const App = () => {
 			return (
 				<div className="app__auth">
 					<Logo />
-					<a className="app__auth-link" href={authUrl}>Please Sign in</a>
+					<a className="app__auth-link" href={authUrl}><span className="app__auth-link-content">Please Sign in</span></a>
 				</div>
 			)
 		}

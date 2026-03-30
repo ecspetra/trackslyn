@@ -9,14 +9,14 @@ const Mute = () => (
         shapeRendering="geometricPrecision"
         textRendering="geometricPrecision"
     >
-        <path d="M0 149.3v213.3h85.3L234.6 512V0L85.3 149.3H0Z" fill="#FFFFFF" />
+        <path d="M0 149.3v213.3h85.3L234.6 512V0L85.3 149.3H0Z" fill="currentColor" />
         <rect
             width={268.204}
             height={43.414}
             rx={0}
             ry={0}
             transform="rotate(45 -12.172 491.788) scale(.88489 1.26667)"
-            fill="#FFFFFF"
+            fill="currentColor"
         />
         <rect
             width={268.204}
@@ -24,7 +24,7 @@ const Mute = () => (
             rx={0}
             ry={0}
             transform="matrix(-.62571 .62571 -.89567 -.89567 512 191.533)"
-            fill="#FFFFFF"
+            fill="currentColor"
         />
     </svg>
 )

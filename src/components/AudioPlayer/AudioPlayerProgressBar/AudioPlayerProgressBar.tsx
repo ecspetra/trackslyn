@@ -185,11 +185,11 @@ const AudioPlayerProgressBar: FC<AudioPlayerProgressBarProps> = ({ trackRef, tra
     }, [trackRef]);
 
     const progressBarStyle = {
-        backgroundImage: `linear-gradient(to right, #6369ff 0%, #6369ff ${progressBarPercentage}%, #2f3369 ${progressBarPercentage}%, #2f3369 100%)`,
+        backgroundImage: `linear-gradient(to right, #000000 0%, #000000 ${progressBarPercentage}%, #dadfe8 ${progressBarPercentage}%, #dadfe8 100%)`,
     }
 
     const volumeBarStyle = {
-        backgroundImage: `linear-gradient(to right, #6369ff 0%, #6369ff ${volumeBarPercentage}%, #2f3369 ${volumeBarPercentage}%, #2f3369 100%)`,
+        backgroundImage: `linear-gradient(to right, #000000 0%, #000000 ${volumeBarPercentage}%, #dadfe8 ${volumeBarPercentage}%, #dadfe8 100%)`,
     }
 
     return (

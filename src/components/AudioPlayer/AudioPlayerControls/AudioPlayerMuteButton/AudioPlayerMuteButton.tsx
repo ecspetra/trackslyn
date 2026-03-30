@@ -11,7 +11,7 @@ type AudioPlayerMuteButtonProps = {
 
 const AudioPlayerMuteButton: FC<AudioPlayerMuteButtonProps> = ({ isMuted, handleMuteTrack, handleUnMuteTrack }) => {
 	return (
-		<Button className="audio-player-mute-button" handleButtonOnClick={isMuted ? handleUnMuteTrack : handleMuteTrack}>{isMuted ? <Sound /> : <Mute />}</Button>
+		<Button className="generic-button--secondary audio-player-button" handleButtonOnClick={isMuted ? handleUnMuteTrack : handleMuteTrack}>{isMuted ? <Sound /> : <Mute />}</Button>
 	)
 }
 

@@ -18,6 +18,7 @@ type Track = {
 type TrackPlayButtonProps = {
     trackInfo: Track;
     handleSetCurrentTrack: (trackInfo) => void;
+	className?: string
 }
 
 const TrackPlayButton: FC<TrackPlayButtonProps> = ({ trackInfo, handleSetCurrentTrack }) => {

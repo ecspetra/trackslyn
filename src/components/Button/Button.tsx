@@ -12,7 +12,7 @@ type ButtonProps = {
 
 const Button: FC<ButtonProps> = ({ handleButtonOnClick, className, children, buttonRef }) => {
     return (
-        <button ref={buttonRef} className={classNames('generic-button', className)} onClick={() => handleButtonOnClick()}>{children}</button>
+        <button ref={buttonRef} className={classNames('generic-button', className)} onClick={() => handleButtonOnClick()}><span className="generic-button__content">{children}</span></button>
     )
 }
 

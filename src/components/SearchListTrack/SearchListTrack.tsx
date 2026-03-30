@@ -4,6 +4,7 @@ import {TracksContext} from "../Context/TracksContext/TracksContext";
 import {setCurrentTrack} from "../../actions";
 import Disk from "../../images/icons/Disk";
 import "./assets/index.scss";
+import { fetchPreviewFromITunes } from "../../handlers/fetchPreviewFromITunes";
 
 type Track = {
     track: {
@@ -28,9 +29,21 @@ const SearchListTrack: FC<SearchListTrackProps> = ({ trackInfo }) => {
     const trackName = trackInfo.track.name;
     const trackAlbumName = trackInfo.track.album.name;
 
-    const handleSetCurrentTrack = (trackInfo) => {
-        dispatch(setCurrentTrack(0, trackInfo.track));
-    }
+    const handleSetCurrentTrack = async (trackInfo) => {
+		const artistName = trackInfo.track.artists?.[0]?.name;
+		const trackName = trackInfo.track.name;
+
+		let previewUrl = trackInfo.track.preview_url;
+
+		if (!previewUrl && artistName) {
+			previewUrl = await fetchPreviewFromITunes(trackName, artistName);
+		}
+
+		dispatch(setCurrentTrack(0, {
+			...trackInfo.track,
+			preview_url: previewUrl,
+		}));
+	};
 
     return (
         <div className="search-list-track">

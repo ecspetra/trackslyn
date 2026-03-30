@@ -10,7 +10,7 @@ type AudioPlayerLoopButtonProps = {
 
 const AudioPlayerLoopButton: FC<AudioPlayerLoopButtonProps> = ({ isLooped, handleLoopTrack }) => {
 	return (
-		<Button className={classNames('audio-player-mute-button', isLooped && 'audio-player-mute-button--looped')} handleButtonOnClick={handleLoopTrack}>{<Loop />}</Button>
+		<Button className={classNames('generic-button--secondary audio-player-button', isLooped && 'audio-player-button--looped')} handleButtonOnClick={handleLoopTrack}>{<Loop />}</Button>
 	)
 }
 
