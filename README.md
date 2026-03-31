@@ -4,7 +4,7 @@
 
 ## Description
 
-Web audio player that grants access to a user's Spotify tracks. The project implements a customized audio player designed for playing previews of tracks from the user's library.
+A web audio player that connects to a user’s Spotify account and allows playback of track previews through a custom-built player interface.
 
 ## Link
 https://trackslyn.yuliia-tkachenko.dev
